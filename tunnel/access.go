@@ -6,20 +6,15 @@ import (
 	"golang.org/x/crypto/ssh"
 )
 
-func AddSshPubKey(client *ssh.Client, user string, keyName string) {
+func AddSshPubKey(client *ssh.Client, user string, keyString string) {
 
 	homeName := fmt.Sprintf("/home/%s", user)
 
-	localDir := fmt.Sprintf("./pub/%s", keyName)
-	targetDir := fmt.Sprintf("./%s", keyName)
-
 	command := []string{
-		fmt.Sprintf("sudo su; echo \"`cat ./%s`\" >> %s/.ssh/authorized_keys", keyName, homeName),
-		fmt.Sprintf("rm ./%s", keyName),
+		fmt.Sprintf("`cat ./%s`\" >> %s/.ssh/authorized_keys", keyString, homeName),
 		"exit",
 	}
 
-	TransferFiles(client, localDir, targetDir)
 	ExecuteCommands(client, command)
 
 }
