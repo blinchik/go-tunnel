@@ -1,4 +1,4 @@
-module github.com/blinchik-io/go-tunnel
+module github.com/blinchik/go-tunnel
 
 go 1.14
 
