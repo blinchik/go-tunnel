@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 
-	mEC2 "github.com/blinchik-io/go-aws/lib/manage-ec2"
-	"github.com/blinchik-io/go-tunnel/tunnel"
+	mEC2 "github.com/blinchik/go-aws/lib/manage-ec2"
+	"github.com/blinchik/go-tunnel/tunnel"
 )
 
 func main() {
