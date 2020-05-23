@@ -11,7 +11,7 @@ func AddSshPubKey(client *ssh.Client, user string, keyString string) {
 	homeName := fmt.Sprintf("/home/%s", user)
 
 	command := []string{
-		fmt.Sprintf("`cat ./%s`\" >> %s/.ssh/authorized_keys", keyString, homeName),
+		fmt.Sprintf("echo \"%s\" >> %s/.ssh/authorized_keys", keyString, homeName),
 		"exit",
 	}
 
