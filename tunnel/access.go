@@ -9,6 +9,7 @@ import (
 func AddSshPubKey(client *ssh.Client, user string, keyString string) {
 
 	homeName := fmt.Sprintf("/home/%s", user)
+		fmt.Println("test2")
 
 	command := []string{
 		fmt.Sprintf("echo \"%s\" >> %s/.ssh/authorized_keys", keyString, homeName),
