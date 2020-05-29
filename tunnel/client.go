@@ -9,9 +9,24 @@ import (
 )
 
 //FirstClient will create SSH client with remote machine
-func FirstClient(user string, KeyName string, address string, port string) *ssh.Client {
+func FirstClient(user string, key string, address string, port string, method string) *ssh.Client {
 
-	signer := SignLocalKey(KeyName)
+	var signer ssh.Signer
+
+	if method == "local" {
+
+		signer = SignLocalKey(key)
+
+	}
+
+	if method == "key" {
+
+		// Create the Signer for this private key.
+		signer, err = ssh.ParsePrivateKey([]byte(key))
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
 
 	GetKnownhostsPublic(user, signer, address, port)
 
@@ -35,9 +50,24 @@ func FirstClient(user string, KeyName string, address string, port string) *ssh.
 }
 
 //TargetClient will create SSH client with remote machine through the middle machine
-func TargetClient(cleint *ssh.Client, user string, KeyName string, address string, port string) *ssh.Client {
+func TargetClient(cleint *ssh.Client, user string, key string, address string, port string, method string) *ssh.Client {
 
-	signer := SignLocalKey(KeyName)
+	var signer ssh.Signer
+
+	if method == "local" {
+
+		signer = SignLocalKey(key)
+
+	}
+
+	if method == "key" {
+
+		// Create the Signer for this private key.
+		signer, err = ssh.ParsePrivateKey([]byte(key))
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
 
 	GetKnownhostsPrivate(cleint, user, signer, address, port)
 
