@@ -86,8 +86,8 @@ func Forward(cleintTarget *ssh.Client, localConn net.Conn, remoteAddress string)
 // ListenOverMiddle creates SSH tunnel over middle machine
 func ListenOverMiddle(userBastion string, userTarget string, bastionKey string, targetKey string, bastionAddress string, TargetAddress, localListnerAddr string, remoteListnerAddr string) {
 
-	clientBastion := FirstClient(userBastion, bastionKey, bastionAddress, sshPort, "local")
-	cleintTarget := TargetClient(clientBastion, userTarget, targetKey, TargetAddress, sshPort, "local")
+	clientBastion := FirstClient(userBastion, bastionKey, bastionAddress, sshPort, "key")
+	cleintTarget := TargetClient(clientBastion, userTarget, targetKey, TargetAddress, sshPort, "key")
 	LocalListner(cleintTarget, localListnerAddr, remoteListnerAddr)
 
 }
@@ -95,7 +95,7 @@ func ListenOverMiddle(userBastion string, userTarget string, bastionKey string, 
 // ListenDirect creates SSH tunnel directly to the remote machine
 func ListenDirect(targetKey string, userTarget string, TargetAddress, localListnerAddr string, remoteListnerAddr string) {
 
-	cleintTarget := FirstClient(userTarget, targetKey, TargetAddress, sshPort, "local")
+	cleintTarget := FirstClient(userTarget, targetKey, TargetAddress, sshPort, "key")
 	LocalListner(cleintTarget, localListnerAddr, remoteListnerAddr)
 
 }
