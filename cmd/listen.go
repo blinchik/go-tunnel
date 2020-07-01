@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 
 	mEC2 "github.com/blinchik/go-aws/lib/manage-ec2"
@@ -9,9 +10,8 @@ import (
 )
 
 func main() {
-	
-	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
 	bastionFlag := flag.Bool("bastion", false, "connect through bastion")
 	freetag := flag.Bool("freetag", false, "connect through bastion")
@@ -56,6 +56,8 @@ func main() {
 			descBastion := mEC2.DescribeByGeneralTag(freetagBastion, ec2BastionName)
 			descTarget := mEC2.DescribeByGeneralTag(freetagTarget, ec2TargetName)
 
+			fmt.Println(descTarget, descBastion)
+
 			TargetAddress := descTarget.PrivateIpAddress
 			bastionAddress := descBastion.PublicIp
 
@@ -87,6 +89,8 @@ func main() {
 
 			TargetAddress := descTarget.PrivateIpAddress
 			bastionAddress := descBastion.PublicIp
+
+			fmt.Println(TargetAddress, bastionAddress)
 
 			go tunnel.Recoverer(300, "tunnel listen", func() {
 
