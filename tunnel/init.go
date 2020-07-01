@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"time"
+	"log"
 )
 
 var home, err = os.UserHomeDir()
