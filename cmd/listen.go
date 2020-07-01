@@ -58,6 +58,9 @@ func main() {
 
 			TargetAddress := descTarget.PrivateIpAddress
 			bastionAddress := descBastion.PublicIp
+			
+			fmt.Println(TargetAddress,bastionAddress)
+			fmt.Println(descBastion,descTarget)
 
 			flag.Args()
 
