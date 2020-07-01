@@ -13,7 +13,7 @@ func Recoverer(maxPanics int, id string, f func()) {
 	defer func() {
 		if err := recover(); err != nil {
 			fmt.Println("recover ", id)
-			fmt.Println(err)
+			log.Println(err)
 
 			if maxPanics == 0 {
 				panic("TOO MANY PANICS")
