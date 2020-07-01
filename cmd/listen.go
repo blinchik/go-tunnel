@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"log"
+	"fmt"
 
 	mEC2 "github.com/blinchik/go-aws/lib/manage-ec2"
 	"github.com/blinchik/go-tunnel/tunnel"
