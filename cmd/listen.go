@@ -2,12 +2,16 @@ package main
 
 import (
 	"flag"
+	"log"
 
 	mEC2 "github.com/blinchik/go-aws/lib/manage-ec2"
 	"github.com/blinchik/go-tunnel/tunnel"
 )
 
 func main() {
+	
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+
 
 	bastionFlag := flag.Bool("bastion", false, "connect through bastion")
 	freetag := flag.Bool("freetag", false, "connect through bastion")
