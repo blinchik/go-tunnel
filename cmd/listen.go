@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"fmt"
 
 	mEC2 "github.com/blinchik/go-aws/lib/manage-ec2"
 	"github.com/blinchik/go-tunnel/tunnel"
@@ -60,6 +61,9 @@ func main() {
 
 			TargetAddress := descTarget.PrivateIpAddress
 			bastionAddress := descBastion.PublicIp
+			
+			fmt.Println(TargetAddress,bastionAddress)
+			fmt.Println(descBastion,descTarget)
 
 			flag.Args()
 
